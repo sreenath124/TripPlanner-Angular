@@ -1,0 +1,38 @@
+<div class="container content">
+	<h1>Trip Planner</h1>
+	<div>
+		<form>
+			<label for="startPoint">From:</label>
+			<input class="form-control" type="text" placeholder="Enter start point" name="startPoint" [(ngModel)] = "startPoint" >
+
+			<label for="destination">To:</label>
+			<input class="form-control" type="text" name="destination" placeholder="enter destiantion" id="destination" [(ngModel)]="destination" >
+
+			<label for="Stops">Stops:</label>
+			<input class="form-control" type="text" placeholder="Enter number of stops"  name="stops" id="stops" [(ngModel)]="stops"  >
+
+			<button class="btn btn-primary" (click)="clicked(startPoint,destination,stops)" >Go</button>
+
+			<div *ngIf = "stops && startPoint && destination" class="trip-table  table-bordered">
+				<table class="table table-stripped">
+					<thead class="thead">
+						<tr scope="row">
+						<th>FROM</th><th>TO</th>
+					</tr>
+					</thead>
+					<tr *ngFor= " let stopPoint of stopDummyArray ;let i=index; let first = first; let last= last ">
+						<td>
+							<input type="text" class="form-control"  name="locationFrom"  >
+						</td>
+						<td>
+							<input type="text" class="form-control"  name="locationTo">
+						</td>
+						
+					</tr>
+				</table>
+					
+				
+			</div>
+		</form>
+	</div>
+</div>	

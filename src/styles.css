@@ -1,0 +1,23 @@
+.content{
+	background: #fff;
+	width: 80%;
+	border-radius: 3px;
+	box-shadow: 0 2px 2px #ddd;
+	margin: 10px auto;
+	padding: 10px;
+}
+
+.trip-table{
+	margin-top: 20px;
+}
+header,
+footer{
+	background: #fff;
+	box-shadow: 1px 1px 4px #ddd;
+	padding: 10px;
+}
+.logo{
+	width: 100px;
+	height: 100%;
+	border-radius: 50%;
+}
