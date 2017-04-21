@@ -1,31 +1,36 @@
 <div class="container content">
-	<h1>Trip Planner</h1>
 	<div>
 		<form>
 			<label for="startPoint">From:</label>
-			<input class="form-control" type="text" placeholder="Enter start point" name="startPoint" [(ngModel)] = "startPoint" >
+			<input class="form-control" type="text" placeholder="Enter start point" name="startPoint" [(ngModel)] = "trip.startPoint" >
 
 			<label for="destination">To:</label>
-			<input class="form-control" type="text" name="destination" placeholder="enter destiantion" id="destination" [(ngModel)]="destination" >
+			<input class="form-control" type="text" name="destination" placeholder="Enter destiantion" id="destination" [(ngModel)]="trip.destination" >
 
 			<label for="Stops">Stops:</label>
-			<input class="form-control" type="text" placeholder="Enter number of stops"  name="stops" id="stops" [(ngModel)]="stops"  >
+			<input class="form-control" type="text" placeholder="Enter number of stops"  name="stops" id="stops" [(ngModel)]="trip.stops"  >
 
-			<button class="btn btn-primary" (click)="clicked(startPoint,destination,stops)" >Go</button>
+			<button class="btn btn-primary" (click)="clicked(trip.startPoint,trip.destination,trip.stops)">Go</button>
 
-			<div *ngIf = "stops && startPoint && destination" class="trip-table  table-bordered">
+			<div *ngIf = " trip.stops && trip.startPoint && trip.destination" class="trip-table  table-bordered">
 				<table class="table table-stripped">
 					<thead class="thead">
 						<tr scope="row">
 						<th>FROM</th><th>TO</th>
 					</tr>
 					</thead>
-					<tr *ngFor= " let stopPoint of stopDummyArray ;let i=index; let first = first; let last= last ">
+					<tr *ngFor= " let stops of tripDetails; let i=index; let first = first; let last= last; ">
 						<td>
-							<input type="text" class="form-control"  name="locationFrom"  >
+							<input type="text" class="form-control"  name="locationFrom-{{i}}" [(ngModel)]= "tripDetails[i].startPoint"  (input)="syncData(i, 'sourceLocation')" >
 						</td>
 						<td>
-							<input type="text" class="form-control"  name="locationTo">
+							<input type="text" class="form-control"  name="locationTo-{{i}}" [(ngModel)]= "tripDetails[i].destination"  (input)="syncData(i, 'destinationLocation')" >
+						</td>
+						<td>
+							<button class="btn btn-primary">+</button>
+						</td>
+						<td>
+							<button class="btn btn-primary">-</button>
 						</td>
 						
 					</tr>
