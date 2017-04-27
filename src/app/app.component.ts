@@ -2,15 +2,11 @@ import { Component } from '@angular/core';
 import { Trip } from './Trip';
 import { TripDetail } from './TripDetails';
 
-
-
 @Component({
   selector: 'my-app',
   moduleId: module.id,
   templateUrl: 'app.component.html'
 })
-
-
 
 export class AppComponent  { 
 	trip: Trip = {
@@ -39,15 +35,48 @@ export class AppComponent  {
 			}
 			this.tripDetails.push(tripDetail);
 		}
-
 	}
 
 	syncData(index:number, locationType:string) {
 		if(locationType == 'destinationLocation') {
 			this.tripDetails[index + 1].startPoint = this.tripDetails[index].destination; 
+			
 		}
 		else if (locationType == 'sourceLocation') {
 			this.tripDetails[index - 1].destination = this.tripDetails[index].startPoint; 
+		}
+	}
+
+	addStop(index:number):void {
+		let counter = this.tripDetails.length;
+         const rowCounter = index;
+
+         for(counter;counter>rowCounter+1;counter--){
+             var data1=this.tripDetails[counter-1].startPoint;
+             var data2=this.tripDetails[counter-1].destination;
+             this.tripDetails[counter]={
+                 startPoint : data1,
+                 destination : data2
+             };
+
+         }
+         this.tripDetails[rowCounter+1].destination= "";
+         this.tripDetails[rowCounter+2].startPoint= "";
+	}	
+
+	removeStop(index:number):void{
+		let destination = this.tripDetails[index].destination,
+			arrlength = this.tripDetails.length;
+		if(index==0){
+			return;
+		}
+		else if( index== arrlength-1) {
+			this.tripDetails[index-1].destination = this.tripDetails[index].destination;
+			this.tripDetails.splice(index,1);
+		}
+		else{
+			this.tripDetails.splice(index,1);
+			this.tripDetails[index].destination= destination;	
 		}
 	}
 
