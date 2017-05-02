@@ -41,12 +41,22 @@ export class AppComponent  {
 
 	syncData(index:number, locationType:string) {
 		if(locationType == 'destinationLocation') {
+			if(index==this.tripDetails.length-1){
+				this.trip.destination = this.tripDetails[index].destination;
+			}
+			else {
 			this.tripDetails[index + 1].startPoint = this.tripDetails[index].destination; 
 
-			
+			}
 		}
 		else if (locationType == 'sourceLocation') {
+			if(index==0) {
+				this.trip.startPoint = this.tripDetails[index].startPoint;
+			}
+			else{
 			this.tripDetails[index - 1].destination = this.tripDetails[index].startPoint; 
+
+			}
 		}
 	}
 
