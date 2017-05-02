@@ -18,7 +18,7 @@
 					<table class="table table-stripped">
 					<thead class="thead">
 						<tr scope="row">
-						<th>FROM</th><th>TO</th>
+						<th>FROM</th><th>TO</th><th>Intermediate Stops</th>
 					</tr>
 					</thead>
 					<tr *ngFor= " let stops of tripDetails; let i=index; let first = first; let last= last; trackBy:trackByFn">
@@ -32,8 +32,6 @@
 						</td>
 						<td>
 							<button class="btn btn-primary" (click)="addStop(i)">+</button>
-						</td>
-						<td>
 							<button class="btn btn-primary" (click)="removeStop(i)" >-</button>
 						</td>
 					</tr>
