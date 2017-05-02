@@ -1,29 +1,37 @@
-.content{
-	background: #fff;
-	width: 100%;
-	max-width: 500px;
-	border-radius: 3px;
-	box-shadow: 0 2px 2px #ddd;
-	margin: 10px auto;
-	padding: 10px;
-	min-height: calc(100vh-100px);
+html,
+body {
+    height: 100%;
+}
+.content {
+    min-height: calc(100% - 192px);
+    height: auto;
+    background: #fff;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px #ddd;
+    margin: 10px auto;
+    padding: 10px;
 }
 
-.trip-table{
-	margin-top: 20px;
+.trip-table {
+    margin-top: 20px;
 }
+
 header,
-footer{
-	background: #fff;
-	box-shadow: 1px 1px 4px #ddd;
-	padding: 10px;
+footer {
+    background: #fff;
+    box-shadow: 1px 1px 4px #ddd;
+    padding: 10px;
 }
-.logo{
-	width: 100px;
-	height: 100%;
-	border-radius: 50%;
+
+.logo {
+    width: 100px;
+    height: 100%;
+    border-radius: 50%;
 }
-.go-btn{
-	text-align: center;
-	padding: 10px;
+
+.go-btn {
+    text-align: center;
+    padding: 10px;
 }
