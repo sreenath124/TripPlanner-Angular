@@ -42,34 +42,41 @@ export class AppComponent  {
 	syncData(index:number, locationType:string) {
 		if(locationType == 'destinationLocation') {
 			this.tripDetails[index + 1].startPoint = this.tripDetails[index].destination; 
+
 			
 		}
 		else if (locationType == 'sourceLocation') {
 			this.tripDetails[index - 1].destination = this.tripDetails[index].startPoint; 
 		}
+		this.trip.startPoint = this.tripDetails[0].startPoint;
+		this.trip.destination = this.tripDetails[this.tripDetails.length -1].destination;
 	}
 
 	addStop(index:number):void {
-         this.tripDetails.splice(index+1,0,{startPoint:"aaa",
-         	destination:"aaas"});
+		let stop: TripDetail = {
+			startPoint:"",
+         	destination:""
+		}
+         this.tripDetails.splice(index,0,stop);
+         this.tripDetails[index].startPoint = this.tripDetails[index+1].startPoint;
+         this.tripDetails[index+1].startPoint  = "";
          	
 	}	
 
 	removeStop(index:number):void{
-		let destination = this.tripDetails[index].destination,
-			arrlength = this.tripDetails.length;
-		if(index==0){
+		let arrayLength = this.tripDetails.length;
+		if(index == arrayLength - 1) {
+			let stopPoint = this.tripDetails[index].destination;
+			this.tripDetails.splice(index,1);
+			this.tripDetails[index-1].destination = stopPoint;
 			return;
 		}
-		else if( index== arrlength-1) {
-			this.tripDetails[index-1].destination = this.tripDetails[index].destination;
-			this.tripDetails.splice(index,1);
-		}
-		else{
-			this.tripDetails[index].destination= destination;	
-			this.tripDetails.splice(index,1);
-		}
-		console.log(this);
+		let stopPoint = this.tripDetails[index].startPoint;
+		this.tripDetails.splice(index,1);
+		this.tripDetails[index].startPoint = stopPoint;
+
+		
+
 	}
 
 	trackByFn(index: number, stops: string) {
