@@ -48,8 +48,6 @@ export class AppComponent  {
 		else if (locationType == 'sourceLocation') {
 			this.tripDetails[index - 1].destination = this.tripDetails[index].startPoint; 
 		}
-		this.trip.startPoint = this.tripDetails[0].startPoint;
-		this.trip.destination = this.tripDetails[this.tripDetails.length -1].destination;
 	}
 
 	addStop(index:number):void {
