@@ -14,15 +14,16 @@
 				<button class="btn btn-primary" (click)="clicked(trip.startPoint,trip.destination,trip.stops)">Go</button>
 			</div>
 			<div *ngIf = "trip.stops && trip.startPoint && trip.destination" class="trip-table  table-bordered">
-				<table class="table table-stripped">
+				<form>
+					<table class="table table-stripped">
 					<thead class="thead">
 						<tr scope="row">
 						<th>FROM</th><th>TO</th>
 					</tr>
 					</thead>
-					<tr *ngFor= " let stops of tripDetails; let i=index; let first = first; let last= last; trackBy: index ">
+					<tr *ngFor= " let stops of tripDetails; let i=index; let first = first; let last= last; trackBy:trackByFn">
 						<td>
-							
+						
 							<input type="text" class="form-control"  name="locationFrom-{{i}}" [(ngModel)]= "stops.startPoint"  (input)="syncData(i, 'sourceLocation')" >
 						</td>
 						<td>
@@ -36,7 +37,8 @@
 							<button class="btn btn-primary" (click)="removeStop(i)" >-</button>
 						</td>
 					</tr>
-				</table>				
+				</table>	
+				</form>			
 			</div>
 		</form>
 	</div>

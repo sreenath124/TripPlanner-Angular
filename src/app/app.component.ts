@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
+
 import { Trip } from './Trip';
 import { TripDetail } from './TripDetails';
 
@@ -48,20 +50,9 @@ export class AppComponent  {
 	}
 
 	addStop(index:number):void {
-		let counter = this.tripDetails.length;
-         const rowCounter = index;
-
-         for(counter;counter>rowCounter+1;counter--){
-             var data1=this.tripDetails[counter-1].startPoint;
-             var data2=this.tripDetails[counter-1].destination;
-             this.tripDetails[counter]={
-                 startPoint : data1,
-                 destination : data2
-             };
-
-         }
-         this.tripDetails[rowCounter+1].destination= "";
-         this.tripDetails[rowCounter+2].startPoint= "";
+         this.tripDetails.splice(index+1,0,{startPoint:"aaa",
+         	destination:"aaas"});
+         	
 	}	
 
 	removeStop(index:number):void{
@@ -75,9 +66,14 @@ export class AppComponent  {
 			this.tripDetails.splice(index,1);
 		}
 		else{
-			this.tripDetails.splice(index,1);
 			this.tripDetails[index].destination= destination;	
+			this.tripDetails.splice(index,1);
 		}
+		console.log(this);
+	}
+
+	trackByFn(index: number, stops: string) {
+  		return index;
 	}
 
 
